@@ -3,6 +3,7 @@ import {MdDialog, MdDialogRef, MdSnackBar} from '@angular/material';
 import { FeedServiceService } from './feed-service.service';
 import { Feed } from './model/feed';
 import { FeedEntry } from './model/feed-entry';
+
 // Add the RxJS Observable operators we need in this app.
 // import './rxjs-operators';
 
@@ -20,7 +21,7 @@ export class AppComponent implements OnInit {
   progress: number = 0;
 
 
-  public myInterval:number = 50000; //1000 = 1s
+  public myInterval:number = 5000; //1000 = 1s
   public noWrapSlides:boolean = false;
   public slides:any[] = [];
   public slidesSider:any[] = [];
@@ -31,7 +32,10 @@ export class AppComponent implements OnInit {
 
 
   private feedUrl: string = encodeURIComponent('http://noticias.spotniks.com/feed/');
-  private feeds: Array<Feed> = [];
+  // private feeds: Array<Feed> = [];
+
+  public blogs: Array<FeedEntry> = [];
+
 
   constructor(private _dialog: MdDialog,
               private _snackbar: MdSnackBar,
@@ -53,30 +57,51 @@ export class AppComponent implements OnInit {
 
   private refreshFeed()
   {
-      this.feedService.getFeedContent(this.feedUrl).subscribe(feed => {
 
-             this.feeds.push(feed)
-                console.log("this.feeds[0]")
-             console.log(this.feeds[0].items[0])
+    this.feedService.getBlogContent();
 
-             this.addSlide(this.feeds[0].items[0]);
-             this.addSlide(this.feeds[0].items[1]);
-             this.addSlide(this.feeds[0].items[2]);
+    setTimeout( () =>{
+
+      var view = this.feedService.blogs;
+      let size = view.length;
+
+      this.addSlide(view[0]);
+      this.addSlide(view[1]);
+      this.addSlide(view[2]);
+
+      this.slidesSider.push(view[3]);
+      this.slidesSider.push(view[4]);
+      this.slidesSider.push(view[5]);
+
+      //o restante para a view
+      this.blogs = view.slice(5, size)
+    }, 3000)
 
 
-             this.slidesSider.push(this.feeds[0].items[2]);
-             this.slidesSider.push(this.feeds[0].items[4]);
-             this.slidesSider.push(this.feeds[0].items[5]);
-
-            //  this.slidesSider.title = this.feeds[0].items[2].title;
-            //  this.slidesSider.description = this.feeds[0].items[2].description;
-            //  this.slidesSider.thumbnail = this.feeds[0].items[2].thumbnail;
-             console.log("this.slidesSider")
-             console.log(this.slidesSider)
-
-           }, error => {
-             console.log(error)
-           });
+        //  this.feedService.getFeedContent(this.feedUrl).subscribe(feed => {
+         //
+        //         this.feeds.push(feed)
+        //            console.log("this.feeds[0]")
+        //         console.log(this.feeds[0].items[0])
+         //
+        //         this.addSlide(this.feeds[0].items[0]);
+        //         this.addSlide(this.feeds[0].items[1]);
+        //         this.addSlide(this.feeds[0].items[2]);
+         //
+         //
+        //         this.slidesSider.push(this.feeds[0].items[2]);
+        //         this.slidesSider.push(this.feeds[0].items[4]);
+        //         this.slidesSider.push(this.feeds[0].items[5]);
+         //
+        //        //  this.slidesSider.title = this.feeds[0].items[2].title;
+        //        //  this.slidesSider.description = this.feeds[0].items[2].description;
+        //        //  this.slidesSider.thumbnail = this.feeds[0].items[2].thumbnail;
+        //         console.log("this.slidesSider")
+        //         console.log(this.slidesSider)
+         //
+        //       }, error => {
+        //         console.log(error)
+        //       });
 
 
  }

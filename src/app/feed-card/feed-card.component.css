@@ -10,6 +10,7 @@
 
 .news-blog .image .responsive-img {
     min-height: 472px;
+    max-height: 472px;
 }
 
 .news-category .author{
@@ -20,6 +21,13 @@
 .news-category .news-description .news-time
 {
   color: #FBC02D;
+}
+
+.news-blog .news-content p
+{
+  line-height: initial;
+  word-break: break-word;
+
 }
 
 

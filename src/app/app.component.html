@@ -1,6 +1,6 @@
 
 
-<md-sidenav-layout [class.m2app-dark]="isDarkTheme">
+<md-sidenav-layout [class.m2app-dark]="isDarkTheme" >
 
   <md-sidenav #sidenav mode="side" class="app-sidenav">
     Sidenav
@@ -62,12 +62,12 @@
                <div class="carousel-caption">
 
                  <div class="news-category">
-                   <p class="purple author">  {{slide.author}}</p>
+                   <p class="purple author">  {{slide.sourceName}}</p>
                    <p class="news-time"> {{slide.pubDate | date:'mediumDate'}} </p>
                  </div>
 
                  <h4 class="title" (click)="openLinkInBrowser(slide.link)" >{{slide.title}}</h4>
-                 <p class="description">{{slide.description}}</p>
+                 <p class="description">{{slide.description | stripHtmlTags}}</p>
                </div>
                <div class="background"></div>
 
@@ -77,6 +77,9 @@
         </carousel>
       </md-grid-tile>
 
+
+
+  <!-- SIDER SLIDE -->
       <md-grid-tile *ngFor="let slide of slidesSider" >
 
         <div id="slide-sider">
@@ -86,7 +89,7 @@
           <div class="carousel-caption">
 
             <div class="news-category">
-              <p class="purple author">  {{slide.author}}</p>
+              <p class="purple author">  {{slide.sourceName}}</p>
               <p class="news-time">
                {{slide.pubDate | date:'mediumDate'}}
              </p>
@@ -102,11 +105,8 @@
     </md-grid-list>
 
 
-    <div *ngFor="let feed of feeds" style="margin-top: 1px;" id="blog">
-      <!-- {{feed.info.title}} -->
-       <app-feed-card *ngFor="let item of feed.items" [feed]="item">
-
-       </app-feed-card>
+    <div  style="margin-top: 1px; overflow: auto;" id="blog">
+       <app-feed-card *ngFor="let item of blogs" [feed]="item"></app-feed-card>
     </div >
 
 

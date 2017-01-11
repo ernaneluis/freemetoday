@@ -8,7 +8,7 @@ import { CarouselModule } from 'ng2-bootstrap/carousel';
 import { FeedCardComponent } from './feed-card/feed-card.component';
 import { FeedServiceService } from './feed-service.service';
 import { StripHtmlTagsPipe } from './pipe/strip-html-tags.pipe';
-
+import { DataConfig } from './model/data-config';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +22,7 @@ import { StripHtmlTagsPipe } from './pipe/strip-html-tags.pipe';
     FormsModule,
     HttpModule
   ],
-  providers: [FeedServiceService],
+  providers: [FeedServiceService, DataConfig],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
