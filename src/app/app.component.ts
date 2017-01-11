@@ -1,5 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {MdDialog, MdDialogRef, MdSnackBar} from '@angular/material';
+import { FeedServiceService } from './feed-service.service';
+import { Feed } from './model/feed';
+// Add the RxJS Observable operators we need in this app.
+// import './rxjs-operators';
+
 
 @Component({
   selector: 'app-root',
@@ -7,26 +12,68 @@ import {MdDialog, MdDialogRef, MdSnackBar} from '@angular/material';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'app works!';
-
-
   isDarkTheme: boolean = false;
   lastDialogResult: string;
-
-  foods: any[] = [
-    {name: 'Pizza', rating: 'Excellent'},
-    {name: 'Burritos', rating: 'Great'},
-    {name: 'French fries', rating: 'Pretty good'},
-  ];
-
   progress: number = 0;
 
-  constructor(private _dialog: MdDialog, private _snackbar: MdSnackBar) {
+
+  public myInterval:number = 50000; //1000 = 1s
+  public noWrapSlides:boolean = false;
+  public slides:any[] = [];
+  public activeSlideIndex: number;
+
+
+
+  private feedUrl: string = encodeURIComponent('http://noticias.spotniks.com/feed/');
+  private feeds: Array<Feed> = [];
+
+  constructor(private _dialog: MdDialog,
+              private _snackbar: MdSnackBar,
+              private feedService: FeedServiceService) {
     // Update the value for the progress-bar on an interval.
     setInterval(() => {
       this.progress = (this.progress + Math.floor(Math.random() * 4) + 1) % 100;
     }, 200);
+
+
+
+  }
+
+  ngOnInit() {
+    this.refreshFeed();
+  }
+
+  private refreshFeed()
+  {
+      this.feedService.getFeedContent(this.feedUrl).subscribe(feed => {
+
+             this.feeds.push(feed)
+                console.log("this.feeds[0]")
+             console.log(this.feeds[0].items[0])
+
+             this.addSlide(this.feeds[0].items[0]);
+             this.addSlide(this.feeds[0].items[1]);
+             this.addSlide(this.feeds[0].items[2]);
+
+           }, error => {
+             console.log(error)
+           });
+
+
+ }
+
+  addSlide(itemfeed)
+  {
+    // let newWidth = 1600 + this.slides.length ;
+    let data = {
+      // image: 'http://placekitten.com/' + newWidth + '/754',
+      image: itemfeed.thumbnail,
+      text: itemfeed.title
+    };
+
+    this.slides.push(data);
   }
 
   openDialog() {

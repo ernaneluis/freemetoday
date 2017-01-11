@@ -1,0 +1,13 @@
+.card-feed-entry {
+  margin: 10px;
+  transition: all 400ms ease-out 50ms;
+}
+
+.news-blog {
+  width: 33%;
+  display: inline-block;
+}
+
+/*md-grid-tile figure {
+  align-items: flex-start!important;
+}*/
