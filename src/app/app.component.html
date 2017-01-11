@@ -11,15 +11,18 @@
 </md-list>
   </md-sidenav>
 
-  <md-progress-bar
+  <!-- <md-progress-bar
       class="app-progress"
       mode="indeterminate"
-      aria-label="Indeterminate progress-bar example"></md-progress-bar>
+      aria-label="Indeterminate progress-bar example"></md-progress-bar> -->
 
   <md-toolbar color="primary">
+
     <button class="app-icon-button" (click)="sidenav.toggle()">
       <i class="material-icons app-toolbar-menu">menu</i>
     </button>
+
+    <img  style="width: 45px;margin: 10px;" src="./assets/img/logo-freeme.png" />
 
     Free me
     <button md-button [md-menu-trigger-for]="menu">
@@ -34,12 +37,14 @@
           <button md-menu-item>1 Month</button>
         </md-menu>
 
-    <h1>
-      {{title}}
-    </h1>
 
     <span class="app-toolbar-filler"></span>
-    <button md-button (click)="isDarkTheme = !isDarkTheme">TOGGLE DARK THEME</button>
+    <!-- <button md-button (click)="isDarkTheme = !isDarkTheme">Noticias</button> -->
+    <button md-button >Notícias</button>
+    <button md-button >Artigos</button>
+    <button md-button >Vídeos</button>
+    <button md-button>Livros</button>
+    <button md-button>Sobre</button>
   </md-toolbar>
 
   <div class="app-content">
@@ -51,55 +56,62 @@
       <md-grid-tile [colspan]=3 [rowspan]="3">
         <carousel [interval]="myInterval" [noWrap]="noWrapSlides">
 
-             <slide *ngFor="let slidez of slides">
+             <slide *ngFor="let slide of slides" id="slide">
 
-               <img [src]="slidez.image" style="margin:auto;">
+               <img [src]="slide.thumbnail" style="margin:auto;">
                <div class="carousel-caption">
-                 <h4>Slide</h4>
-                 <p>{{slidez.text}}</p>
+
+                 <div class="news-category">
+                   <p class="purple author">  {{slide.author}}</p>
+                   <p class="news-time"> {{slide.pubDate | date:'mediumDate'}} </p>
+                 </div>
+
+                 <h4 class="title" (click)="openLinkInBrowser(slide.link)" >{{slide.title}}</h4>
+                 <p class="description">{{slide.description}}</p>
                </div>
+               <div class="background"></div>
+
 
              </slide>
 
         </carousel>
       </md-grid-tile>
 
-      <md-grid-tile >
+      <md-grid-tile *ngFor="let slide of slidesSider" >
 
-      </md-grid-tile>
+        <div id="slide-sider">
 
-      <md-grid-tile >
-       one2
-      </md-grid-tile>
+          <img [src]="slide.thumbnail" style="margin:auto;">
 
-      <md-grid-tile >
-       one3
+          <div class="carousel-caption">
+
+            <div class="news-category">
+              <p class="purple author">  {{slide.author}}</p>
+              <p class="news-time">
+               {{slide.pubDate | date:'mediumDate'}}
+             </p>
+            </div>
+            <h4 class="title" (click)="openLinkInBrowser(slide.link)">{{slide.title}}</h4>
+
+          </div>
+          <div class="background"></div>
+        </div>
+
       </md-grid-tile>
 
     </md-grid-list>
 
 
-    <!-- <md-grid-list cols="4" rowHeight="250px"> -->
-    <div *ngFor="let feed of feeds">
+    <div *ngFor="let feed of feeds" style="margin-top: 1px;" id="blog">
       <!-- {{feed.info.title}} -->
        <app-feed-card *ngFor="let item of feed.items" [feed]="item">
 
        </app-feed-card>
     </div >
-    <!-- </md-grid-list> -->
 
 
 
-    <!-- <div class='md-padding' layout="row" flex>
-       <div layout="row" flex>
-          <div  ng-repeat="user in users" flex>
-              ... Your content here
-          </div>
-       </div>
-    </div> -->
-
-
-    <md-card>
+    <!-- <md-card>
       <md-icon>build</md-icon>
       <md-tab-group>
         <md-tab label="Earth">
@@ -109,16 +121,35 @@
           <p>FIRE</p>
         </md-tab>
       </md-tab-group>
-    </md-card>
+    </md-card> -->
 
 
-
+<!--
     <md-card>
       <p>Last dialog result: {{lastDialogResult}}</p>
       <button md-raised-button (click)="openDialog()">DIALOG</button>
       <button md-raised-button (click)="showSnackbar()">SNACKBAR</button>
-    </md-card>
+    </md-card> -->
 
   </div>
 
 </md-sidenav-layout>
+
+
+
+<md-toolbar color="primary">
+  <span>Custom Toolbar</span>
+
+  <md-toolbar-row>
+    <span>Second Line</span>
+    <span class="example-spacer"></span>
+    <md-icon class="example-icon">verified_user</md-icon>
+  </md-toolbar-row>
+
+  <md-toolbar-row>
+    <span>Third Line</span>
+    <span class="example-spacer"></span>
+    <md-icon class="example-icon">favorite</md-icon>
+    <md-icon class="example-icon">delete</md-icon>
+  </md-toolbar-row>
+</md-toolbar>

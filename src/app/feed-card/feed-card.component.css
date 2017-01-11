@@ -8,6 +8,22 @@
   display: inline-block;
 }
 
+.news-blog .image .responsive-img {
+    min-height: 472px;
+}
+
+.news-category .author{
+  background-color: #FBC02D;
+  color: black;
+}
+
+.news-category .news-description .news-time
+{
+  color: #FBC02D;
+}
+
+
+
 /*md-grid-tile figure {
   align-items: flex-start!important;
 }*/

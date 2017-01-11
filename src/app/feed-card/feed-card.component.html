@@ -1,4 +1,3 @@
-<!-- <md-grid-tile> -->
 
 <!-- News Blog Box -->
                        <div class="news-blog z-depth-1">
@@ -8,10 +7,9 @@
                            </div>
                            <!-- News Blog Category -->
                            <div class="news-category">
-                               <span class="purple">  {{feed.author}}</span>
+                               <span class="author">  {{feed.author}}</span>
                                <!-- Dropdown -->
-
-                               <button md-icon-button [mdMenuTriggerFor]="menu" style="left: 77%;">
+                               <button md-icon-button [mdMenuTriggerFor]="menu" style="left: 62%;position: relative;z-index: 99;">
                                    <md-icon>more_vert</md-icon>
                                  </button>
                                  <md-menu #menu="mdMenu">
@@ -33,29 +31,13 @@
 
                            </div>
                            <!-- News Blog Description -->
-                           <div class="news-description">
-                               <div class="news-time">
-                                {{feed.pubDate | date:'dd-MM-yyyy'}}
+                           <div class="news-description" >
+                               <div class="news-time" style="color: #FBC02D;">
+                                {{feed.pubDate | date:'mediumDate'}}
                                </div>
-                               <div class="news-title"> <a href="javascript:void(0);">   {{feed.title}} </a></div>
+                               <div class="news-title" (click)="openLinkInBrowser()" > <a href="javascript:void(0);">   {{feed.title}} </a></div>
                                <div class="news-content">
                                  <p>{{feed.description | stripHtmlTags}}</p>
                                </div>
                            </div>
                        </div>
-
-
-<!-- </md-grid-tile> -->
-
-  <!-- <md-card class="card-feed-entry" (click)="openLinkInBrowser()" style="width: 350px;">
-     <md-card-header>
-        <md-card-title>{{feed.title}}</md-card-title>
-        <md-card-subtitle>{{feed.author}} - {{feed.pubDate | date:'dd-MM-yyyy'}}</md-card-subtitle>
-     </md-card-header>
-    <md-card-content>{{feed.description | stripHtmlTags}}</md-card-content>
-
-    <md-card-actions>
-      <button md-button>LIKE</button>
-      <button md-button>SHARE</button>
-    </md-card-actions>
-  </md-card> -->
