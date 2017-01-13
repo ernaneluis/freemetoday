@@ -4,13 +4,17 @@
 }
 
 .news-blog {
-  width: 33%;
-  display: inline-block;
+  /*width: 33%;
+  display: inline-block;*/
+  position: inherit;
+  min-height: inherit;
+  display: flex;
 }
 
 .news-blog .image .responsive-img {
     min-height: 472px;
     max-height: 472px;
+    min-width: 472px;
 }
 
 .news-category .author{
@@ -27,11 +31,12 @@
 {
   line-height: initial;
   word-break: break-word;
-
 }
 
-
-
-/*md-grid-tile figure {
-  align-items: flex-start!important;
-}*/
+.news-blog .news-title > a {
+    color: #fff;
+    font-size: 25px;
+    line-height: 35px;
+    text-transform: uppercase;
+    font-weight: bold;
+}

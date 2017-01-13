@@ -3,12 +3,33 @@
 <md-sidenav-layout [class.m2app-dark]="isDarkTheme" >
 
   <md-sidenav #sidenav mode="side" class="app-sidenav">
-    Sidenav
-    <md-list>
- <md-list-item>  <button md-button>Flat button</button> </md-list-item>
- <md-list-item>  <button md-button>Flat button</button> </md-list-item>
- <md-list-item>  <button md-button>Flat button</button> </md-list-item>
-</md-list>
+
+    <md-toolbar color="accent">
+      <span>Menu</span>
+    </md-toolbar>
+
+    <md-nav-list dense>
+        <h3 md-subheader style="margin-bottom: 10px;">  <md-icon md-list-avatar>subject</md-icon> Notícias</h3>
+        <md-list-item *ngFor="let blog of footer.blogs">
+
+          <a  [href]="blog.url" target="_blank">
+            {{blog.name}}
+          </a>
+
+        </md-list-item>
+    </md-nav-list>
+
+    <md-nav-list dense>
+        <h1 md-subheader style="margin-bottom: 10px;">  <md-icon >videocam</md-icon> Vídeos</h1>
+        <md-list-item *ngFor="let video of footer.videos">
+
+          <a  href="https://www.youtube.com/channel/{{video.channelId}}" target="_blank">
+            {{video.chanelName}}
+          </a>
+
+        </md-list-item>
+    </md-nav-list>
+
   </md-sidenav>
 
   <!-- <md-progress-bar
@@ -24,27 +45,15 @@
 
     <img  style="width: 45px;margin: 10px;" src="./assets/img/logo-freeme.png" />
 
-    Free me
-    <button md-button [md-menu-trigger-for]="menu">
-      Today
-    </button>
-
-
-        <md-menu #menu="mdMenu">
-          <button md-menu-item>Today</button>
-          <button md-menu-item>Yesterday</button>
-          <button md-menu-item>1 Week</button>
-          <button md-menu-item>1 Month</button>
-        </md-menu>
-
+      Free me Today
 
     <span class="app-toolbar-filler"></span>
     <!-- <button md-button (click)="isDarkTheme = !isDarkTheme">Noticias</button> -->
     <button md-button >Notícias</button>
-    <button md-button >Artigos</button>
+    <!-- <button md-button >Artigos</button> -->
     <button md-button >Vídeos</button>
-    <button md-button>Livros</button>
-    <button md-button>Sobre</button>
+    <!-- <button md-button>Livros</button> -->
+    <!-- <button md-button>Sobre</button> -->
   </md-toolbar>
 
   <div class="app-content">
@@ -98,58 +107,84 @@
 
           </div>
           <div class="background"></div>
-        </div>
+
+       </div>
 
       </md-grid-tile>
 
     </md-grid-list>
 
 
-    <div  style="margin-top: 1px; overflow: auto;" id="blog">
-       <app-feed-card *ngFor="let item of blogs" [feed]="item"></app-feed-card>
-    </div >
+    <md-toolbar color="primary">
+        <md-icon>subject</md-icon>
+        <span>Notícias</span>
+    </md-toolbar>
+
+    <div  style="margin-top: 10px; overflow: auto;" id="blog">
+       <!-- <app-feed-card *ngFor="let item of blogs" [feed]="item"></app-feed-card> -->
+       <md-grid-list cols="3" rowHeight="470px" gutterSize="10px">
+         <md-grid-tile *ngFor="let item of blogs" >
+              <app-feed-card  [feed]="item"></app-feed-card>
+         </md-grid-tile>
+       </md-grid-list>
+    </div >  <!-- end blog -->
+
+<!-- <md-card>
+  Vídeos
+
+  <md-icon>theaters</md-icon>
+  <md-icon>play_circle_filled</md-icon>
+  <md-icon>play_circle_outline</md-icon>
+  <md-icon>play_arrow</md-icon>
+  <md-icon>subscriptions</md-icon>
+  <md-icon>videocam</md-icon>
+  <md-icon>video_library</md-icon>
+  <md-icon>book</md-icon>
+  <md-icon>library_books</md-icon>
+  <md-icon>update</md-icon>
+  <md-icon>subject</md-icon>
+  <md-icon>dvr</md-icon>
+  <md-icon>cast</md-icon>
+  <md-icon>school</md-icon>
+
+</md-card> -->
+
+<md-toolbar color="primary">
+    <md-icon>videocam</md-icon>
+    <span>Vídeos</span>
+</md-toolbar>
 
 
 
-    <!-- <md-card>
-      <md-icon>build</md-icon>
-      <md-tab-group>
-        <md-tab label="Earth">
-          <p>EARTH</p>
-        </md-tab>
-        <md-tab label="Fire">
-          <p>FIRE</p>
-        </md-tab>
-      </md-tab-group>
-    </md-card> -->
+  <div style="background-color:#212121">
+      <md-grid-list color="accent" cols="4" rowHeight="300px" gutterSize="10px">
+        <md-grid-tile *ngFor="let item of videos" >
+             <app-video-card  [feed]="item"></app-video-card>
+        </md-grid-tile>
+      </md-grid-list>
 
+      <share-buttons id="share-buttons"  [url]="linkToShare" [count]="true" ></share-buttons>
+  </div>  <!--end video -->
 
-<!--
-    <md-card>
-      <p>Last dialog result: {{lastDialogResult}}</p>
-      <button md-raised-button (click)="openDialog()">DIALOG</button>
-      <button md-raised-button (click)="showSnackbar()">SNACKBAR</button>
-    </md-card> -->
-
-  </div>
+</div> <!-- class="app-content"> -->
 
 </md-sidenav-layout>
 
 
 
-<md-toolbar color="primary">
-  <span>Custom Toolbar</span>
+  <md-toolbar color="primary" style="text-align: center; color: black; font-size: 14px;">
+    <md-toolbar-row>
 
-  <md-toolbar-row>
-    <span>Second Line</span>
-    <span class="example-spacer"></span>
-    <md-icon class="example-icon">verified_user</md-icon>
+    <p style="color: black; padding-left: 21%; padding-right: 21%;">
+    <span>
+      Esse site é uma plataforma online para divulgar e conscientizar as pessoas sobre as ideas de Liberdade, Propriedade e Paz.
+    </span>
+
+    <span>
+      Aqui você encontrará tudo sobre o tema, desde notícias, vídeos, artigos, livros, grupos de estudos e eventos próximos a você.
+    </span>
+  </p>
   </md-toolbar-row>
 
-  <md-toolbar-row>
-    <span>Third Line</span>
-    <span class="example-spacer"></span>
-    <md-icon class="example-icon">favorite</md-icon>
-    <md-icon class="example-icon">delete</md-icon>
-  </md-toolbar-row>
-</md-toolbar>
+    <md-toolbar-row></md-toolbar-row>
+  </md-toolbar>

@@ -22,7 +22,7 @@
 // @include angular-material-theme($candy-app-theme);
 
 $primary: md-palette($md-yellow, 700, 500, 900);
-$accent:  md-palette($md-blue-grey, A200, A100, A400);
+$accent:  md-palette($md-grey, 700, 500, 900);
 $warn:    md-palette($md-red);
 $theme: md-light-theme($primary, $accent, $warn);
 

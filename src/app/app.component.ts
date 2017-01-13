@@ -3,6 +3,7 @@ import {MdDialog, MdDialogRef, MdSnackBar} from '@angular/material';
 import { FeedServiceService } from './feed-service.service';
 import { Feed } from './model/feed';
 import { FeedEntry } from './model/feed-entry';
+import { DataConfig } from './model/data-config';
 
 // Add the RxJS Observable operators we need in this app.
 // import './rxjs-operators';
@@ -35,19 +36,24 @@ export class AppComponent implements OnInit {
   // private feeds: Array<Feed> = [];
 
   public blogs: Array<FeedEntry> = [];
+  public videos: Array<FeedEntry> = [];
 
+  public footer:any;
+
+  public linkToShare:string = "http://www.freeme.today"
 
   constructor(private _dialog: MdDialog,
               private _snackbar: MdSnackBar,
-              private feedService: FeedServiceService) {
+              private feedService: FeedServiceService,
+              private dataConfig: DataConfig) {
     // Update the value for the progress-bar on an interval.
-    setInterval(() => {
-      this.progress = (this.progress + Math.floor(Math.random() * 4) + 1) % 100;
-    }, 200);
+    // setInterval(() => {
+    //   this.progress = (this.progress + Math.floor(Math.random() * 4) + 1) % 100;
+    // }, 200);
 
     // this.slidesSider = {title: "", description:"", thumbnail:""}
 
-
+    this.footer = this.dataConfig.data
 
   }
 
@@ -59,6 +65,7 @@ export class AppComponent implements OnInit {
   {
 
     this.feedService.getBlogContent();
+    this.feedService.getVideoContent();
 
     setTimeout( () =>{
 
@@ -74,7 +81,9 @@ export class AppComponent implements OnInit {
       this.slidesSider.push(view[5]);
 
       //o restante para a view
-      this.blogs = view.slice(5, size)
+      this.blogs = view.slice(5, 20) //5 linhas de 3 noticias pois 5-20/5 = 3
+
+      this.videos = this.feedService.videos.slice(0, 20) //5 linhas de 4 noticias
     }, 3000)
 
 

@@ -2,6 +2,10 @@ md-sidenav-layout.m2app-dark {
   background: black;
 }
 
+md-sidenav {
+  width: 200px;
+}
+
 .app-content {
   /*padding: 20px;*/
 }
@@ -10,10 +14,10 @@ md-sidenav-layout.m2app-dark {
   margin: 20px;
 }
 
-.app-sidenav {
+/*.app-sidenav {
   padding: 10px;
   min-width: 100px;
-}
+}*/
 
 .app-content md-checkbox {
   margin: 10px;
@@ -210,5 +214,13 @@ md-sidenav-layout.m2app-dark {
       min-height: 472px;
   }
 
-
-  
+#share-buttons
+{
+  background-color:#212121;
+}
+/*
+.sb-container .sb-buttons
+{
+  margin: 0px !important;
+  padding: 20px !important;
+}*/

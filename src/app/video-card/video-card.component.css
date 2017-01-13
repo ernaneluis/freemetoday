@@ -1,0 +1,102 @@
+.card-feed-entry {
+  margin: 10px;
+  transition: all 400ms ease-out 50ms;
+}
+
+.news-video {
+  /*width: 24%;*/
+  /*display: inline-block;
+  position: relative;
+  min-height: 300px;*/
+}
+
+.news-video .image .responsive-img {
+    min-height: 410px;
+    max-height: 300px;
+}
+
+.news-category .author{
+  background-color: #FBC02D;
+  color: black;
+}
+
+.news-category .news-description .news-time
+{
+  color: #FBC02D;
+}
+
+.news-video .news-content p
+{
+  line-height: initial;
+  word-break: break-word;
+  color: #fff;
+}
+
+.news-video .news-category {
+    position: absolute;
+    width: 100%;
+    padding: 0 0 0 25px;
+    top: 20px;
+    z-index: 99;
+}
+
+.news-video .news-category span {
+    /*color: #fff;*/
+    font-size: 12px;
+    padding: 3px 10px;
+    border-radius: 2px;
+}
+
+.news-video  .news-description {
+    position: absolute;
+    z-index: 99;
+    bottom: 0;
+    width: 100%;
+    padding: 8px 20px;
+    background: rgba(0, 0, 0, 0) linear-gradient(transparent, rgba(0, 0, 0, 1)) repeat scroll 0 0;
+    -webkit-background: rgba(0, 0, 0, 0) -webkit-linear-gradient(transparent, rgba(0, 0, 0, 1)) repeat scroll 0 0;
+    -ms-background: rgba(0, 0, 0, 0) linear-gradient(transparent, rgba(0, 0, 0, 1)) repeat scroll 0 0;
+    -o-background: rgba(0, 0, 0, 0) linear-gradient(transparent, rgba(0, 0, 0, 1)) repeat scroll 0 0;
+}
+
+
+.news-video .news-title > a {
+    color: #fff;
+    font-size: 20px;
+    line-height: 30px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.news-video .news-time {
+    background: rgba(0, 0, 0, 0.5);
+    display: inline-block;
+    padding: 5px 10px;
+  }
+
+.news-video .play-icon
+{
+  position: absolute;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  /*padding: 25% 25% 25% 30%;*/
+  z-index: 2;
+  cursor: pointer;
+}
+
+.news-video .play-icon .play
+{
+  position: absolute;
+  top: 25%;
+  /*bottom: 25%;*/
+  left: 30%;
+  right: 35%;
+
+}
+
+
+.news-video .play-icon .material-icons {
+    font-size: 124px;
+    opacity: 0.5;
+}

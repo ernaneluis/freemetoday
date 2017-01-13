@@ -12,8 +12,11 @@ import { DataConfig } from './model/data-config';
 export class FeedServiceService
 {
   public blogs: Array<FeedEntry> = [];
+  public videos: Array<FeedEntry> = [];
 
-  private rssToJsonServiceBaseUrl: string = 'https://rss2json.com/api.json?rss_url=';
+  // https://api.rss2json.com/v1/api.json?rss_url=http%3A%2F%2Fimpostoeroubo.com.br%2Ffeed%2Frss%2F&api_key=iw4sffe4roaldbxu4twgrssnpfcwtm35oedepzsw&order_by=pubDate&order_dir=desc&count=3
+
+  private rssToJsonServiceBaseUrl: string = 'https://api.rss2json.com/v1/api.json?rss_url=';
   private key: string = "iw4sffe4roaldbxu4twgrssnpfcwtm35oedepzsw"
 
   constructor( private http: Http, private dataConfig: DataConfig) {
@@ -43,10 +46,9 @@ export class FeedServiceService
       }
   }
 
-
   getFeedContent(url: string): Observable<Feed>
   {
-    let fullURL = this.rssToJsonServiceBaseUrl + url + "&api_key=" + this.key + "&order_by=pubDate&order_dir=desc&count=3"
+    let fullURL = this.rssToJsonServiceBaseUrl + encodeURIComponent(url) + "&api_key=" + this.key + "&order_by=pubDate&order_dir=desc&count=3"
     console.log("Loading url " + fullURL)
     return this.http.get(fullURL)
             .map(this.extractFeeds)
@@ -86,7 +88,7 @@ export class FeedServiceService
                  entry.thumbnail = imgs.src.toString()
                }
                else {
-                 entry.thumbnail = 'https://placeholdit.imgix.net/~text?txtsize=33&txt=&w=350&h=235'
+                 entry.thumbnail = 'https://placeholdit.imgix.net/~text?txtsize=33&txt=&w=550&h=535'
                }
            }
 
@@ -129,5 +131,92 @@ export class FeedServiceService
         return result * sortOrder;
     }
   }
+
+
+  getVideoContent()
+  {
+    if(this.dataConfig.data.videos)
+    {
+
+          for(var i=0;i<this.dataConfig.data.videos.length;i++)
+          {
+            var video = this.dataConfig.data.videos[i];
+
+            this.getYoutubeContent(video).subscribe(feedEntries => {
+
+                  //  this.blogs.push(feedEntries)
+                   this.videos.push.apply(this.videos, feedEntries);
+                   this.videos.sort(this.dynamicSort("-pubDate"));
+
+                 }, error => {
+                   console.log(error)
+                 });
+           }
+
+      }
+  }
+
+  getYoutubeContent(video:any): Observable<Feed>
+  {
+    let fullURL = "https://www.googleapis.com/youtube/v3/playlistItems?"
+    fullURL += "part=snippet%2CcontentDetails&maxResults=2"
+    fullURL += "&playlistId=" + video.playlistId
+    fullURL += "&key=AIzaSyB08auLKqhCoPYp5toKnfHamo5Tvg1V1OM"
+
+    console.log("Loading url youtbe " + fullURL)
+    return this.http.get(fullURL)
+          .map(res => this.extractYoutube(res, video))
+          .catch(this.handleError);
+  }
+
+  private extractYoutube(res: Response, video:any): Array<FeedEntry>
+  {
+    let data = res.json();
+    let entries:Array<FeedEntry> = [];
+
+    if(data.items)
+    {
+      console.log("Extract from " + video.chanelName)
+      for(var i=0;i<data.items.length;i++)
+      {
+
+          let entry:FeedEntry = <FeedEntry>  {
+              title: data.items[i].snippet.title, //titlo da noticia
+              link: "https://www.youtube.com/watch?v=" + data.items[i].snippet.resourceId.videoId, //link da noticia
+              pubDate: data.items[i].snippet.publishedAt, //data
+              sourceName: video.chanelName,
+              thumbnail: "",
+              description:  ""
+         };
+
+         if(data.items[i].snippet.thumbnails.standard)
+         {
+           entry.thumbnail = data.items[i].snippet.thumbnails.standard.url
+         }
+         else if(data.items[i].snippet.thumbnails.high)
+         {
+           entry.thumbnail = data.items[i].snippet.thumbnails.high.url
+         }
+         else if(data.items[i].snippet.thumbnails.medium)
+         {
+           entry.thumbnail = data.items[i].snippet.thumbnails.medium.url
+         }
+         else if(data.items[i].snippet.thumbnails.default)
+         {
+           entry.thumbnail = data.items[i].snippet.thumbnails.default.url
+         }
+
+         entries.push(entry)
+      }
+    }
+
+    console.log("youtube entries")
+    console.log(entries)
+
+    return entries;
+  }
+
+
+
 
 }
