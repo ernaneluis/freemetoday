@@ -48,7 +48,7 @@ export class FeedServiceService
 
   getFeedContent(url: string): Observable<Feed>
   {
-    let fullURL = this.rssToJsonServiceBaseUrl + encodeURIComponent(url) + "&api_key=" + this.key + "&order_by=pubDate&order_dir=desc&count=3"
+    let fullURL = this.rssToJsonServiceBaseUrl + encodeURIComponent(url+"feed/") + "&api_key=" + this.key + "&order_by=pubDate&order_dir=desc&count=3"
     console.log("Loading url " + fullURL)
     return this.http.get(fullURL)
             .map(this.extractFeeds)

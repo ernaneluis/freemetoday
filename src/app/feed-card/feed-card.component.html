@@ -1,20 +1,13 @@
-<!-- title: string, //titlo da noticia
-link: string, //link da noticia
-// guid: string,
-pubDate: Date, //data
-// categories: Array<string>,
-sourceName: string,
-thumbnail: string,
-description: string -->
+
 <!-- News Blog Box -->
-                       <div class="news-blog z-depth-1">
+                       <div class="news-feed z-depth-1">
                            <!-- News Blog Image -->
                            <div class="image">
-                               <img class="responsive-img" src="{{feed.thumbnail}}" alt="news Image">
+                               <img height="470"  class="responsive-img" src="{{feed.thumbnail}}" alt="news Image">
                            </div>
                            <!-- News Blog Category -->
-                           <div class="news-category">
-                               <span class="author">  {{feed.sourceName}}</span>
+                           <!-- <div class="news-category">
+                               <span class="author">  {{feed.sourceName}}</span> -->
                                <!-- Dropdown -->
                                <!-- <button md-icon-button [mdMenuTriggerFor]="menu" style="left: 62%;position: relative;z-index: 99;">
                                    <md-icon>more_vert</md-icon>
@@ -33,18 +26,20 @@ description: string -->
                                      <span>Disable alerts</span>
                                    </button>
                                  </md-menu> -->
-
-
-
-                           </div>
+                           <!-- </div> -->
                            <!-- News Blog Description -->
                            <div class="news-description" >
-                               <div class="news-time" style="color: #FBC02D;">
-                                {{feed.pubDate | date:'mediumDate'}}
-                               </div>
-                               <div class="news-title" (click)="openLinkInBrowser()" > <a href="javascript:void(0);">   {{feed.title}} </a></div>
-                               <div class="news-content">
-                                 <p>{{feed.description | stripHtmlTags}}</p>
-                               </div>
+
+
+                               <div class="content-card">
+                                      <span class="author">  {{feed.sourceName}}</span>
+                                     <div class="news-time" style="color: #FBC02D;">
+                                      {{feed.pubDate | date:'mediumDate'}}
+                                     </div>
+                                     <div class="news-title" (click)="openLinkInBrowser()" > <a href="javascript:void(0);">   {{feed.title}} </a></div>
+                                     <div class="news-content">
+                                       <p>{{feed.description | stripHtmlTags}}</p>
+                                     </div>
+                                </div>
                            </div>
                        </div>

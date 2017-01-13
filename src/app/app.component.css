@@ -217,6 +217,12 @@ md-sidenav {
 #share-buttons
 {
   background-color:#212121;
+  color: white !important;
+}
+
+.sb-container .sb-buttons .sb-button-count
+{
+  color: white !important;
 }
 /*
 .sb-container .sb-buttons

@@ -10,7 +10,7 @@
 
     <md-nav-list dense>
         <h3 md-subheader style="margin-bottom: 10px;">  <md-icon md-list-avatar>subject</md-icon> Notícias</h3>
-        <md-list-item *ngFor="let blog of footer.blogs">
+        <md-list-item *ngFor="let blog of sidemenu.blogs">
 
           <a  [href]="blog.url" target="_blank">
             {{blog.name}}
@@ -21,7 +21,7 @@
 
     <md-nav-list dense>
         <h1 md-subheader style="margin-bottom: 10px;">  <md-icon >videocam</md-icon> Vídeos</h1>
-        <md-list-item *ngFor="let video of footer.videos">
+        <md-list-item *ngFor="let video of sidemenu.videos">
 
           <a  href="https://www.youtube.com/channel/{{video.channelId}}" target="_blank">
             {{video.chanelName}}

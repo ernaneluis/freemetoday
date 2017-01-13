@@ -1,11 +1,9 @@
-.card-feed-entry {
+/*.card-feed-entry {
   margin: 10px;
   transition: all 400ms ease-out 50ms;
 }
 
 .news-blog {
-  /*width: 33%;
-  display: inline-block;*/
   position: inherit;
   min-height: inherit;
   display: flex;
@@ -39,4 +37,109 @@
     line-height: 35px;
     text-transform: uppercase;
     font-weight: bold;
+}*/
+
+
+
+
+
+
+.card-feed-entry {
+  margin: 10px;
+  transition: all 400ms ease-out 50ms;
+}
+
+.news-feed {
+  /*width: 24%;*/
+  /*display: inline-block;
+  position: relative;
+  min-height: 300px;*/
+}
+
+.news-feed .image .responsive-img {
+    filter: blur(3px);
+}
+
+/*@media only screen and (max-width: 1430px) {
+
+}*/
+
+/*lager then 768*/
+@media only screen and (min-width: 1400px) {
+  .news-feed .image .responsive-img {
+      /*min-height: 410px;
+      max-height: 300px;*/
+      min-width: 470px;
+      filter: blur(3px);
+  }
+}
+
+
+
+.news-description .author{
+  background-color: #FBC02D;
+  color: black;
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 2px;
+}
+
+.news-category .news-description .news-time
+{
+  color: #FBC02D;
+}
+
+.news-feed .news-content p
+{
+  line-height: initial;
+  word-break: break-word;
+  color: #fff;
+}
+
+.news-feed .news-category {
+    position: absolute;
+    width: 100%;
+    padding: 0 0 0 25px;
+    top: 20px;
+    z-index: 99;
+}
+
+
+.news-feed  .news-description {
+    position: absolute;
+    z-index: 99;
+    /*bottom: 0;*/
+    top:0;
+    height: 100%;
+    width: 100%;
+    padding: 8px 20px;
+    background: rgba(0, 0, 0, 0.10) linear-gradient(transparent, rgba(0, 0, 0, 1)) repeat scroll 0 0;
+    -webkit-background: rgba(0, 0, 0, 0.10) -webkit-linear-gradient(transparent, rgba(0, 0, 0, 1)) repeat scroll 0 0;
+    -ms-background: rgba(0, 0, 0, 0.10) linear-gradient(transparent, rgba(0, 0, 0, 1)) repeat scroll 0 0;
+    -o-background: rgba(0, 0, 0, 0.10) linear-gradient(transparent, rgba(0, 0, 0, 1)) repeat scroll 0 0;
+}
+
+
+.news-feed .news-title > a {
+    color: #fff;
+    font-size: 20px;
+    line-height: 30px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.news-feed .news-time {
+    background: rgba(0, 0, 0, 0.5);
+    display: inline-block;
+    padding: 5px 10px;
+  }
+
+
+.news-feed .news-description .content-card
+{
+  bottom: 0px;
+  position: absolute;
+  left: 0px;
+  padding-right: 5%;
+  padding-left: 5%;
 }

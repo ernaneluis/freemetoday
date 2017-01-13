@@ -42,6 +42,7 @@ export class AppComponent implements OnInit {
   public videos: Array<FeedEntry> = [];
 
   public footer:any;
+  public sidemenu:any;
 
   public linkToShare:string = "http://www.freeme.today"
 
@@ -51,6 +52,7 @@ export class AppComponent implements OnInit {
               private dataConfig: DataConfig,
               public router: Router) {
 
+    console.log("App component");
 
     this.router.events.subscribe(event => {
        if (event instanceof NavigationEnd) {
@@ -68,7 +70,7 @@ export class AppComponent implements OnInit {
     // this.slidesSider = {title: "", description:"", thumbnail:""}
 
     this.footer = this.dataConfig.data
-
+    this.sidemenu = {blogs: this.dataConfig.getFeeds(), videos: this.dataConfig.getVideos() };
   }
 
   ngOnInit() {

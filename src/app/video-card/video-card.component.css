@@ -13,6 +13,7 @@
 .news-video .image .responsive-img {
     min-height: 410px;
     max-height: 300px;
+    filter: blur(3px);
 }
 
 .news-category .author{
