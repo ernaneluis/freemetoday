@@ -8,7 +8,7 @@ export class DataConfig
 
     this.data = {
       blogs:[
-        {name: "Spotniks", url: "http://noticias.spotniks.com/feed/"},
+        {name: "Spotniks", url: "http://spotniks.com/feed/"},
         {name: "Rothbard Brasil", url: "http://rothbardbrasil.com/feed/"},
         {name: "Imposto É ROUBO!", url: "http://impostoeroubo.com.br/feed/rss/"},
         {name: "SFL Brasil", url: "http://studentsforliberty.org/brasil/feed/rss/"},
