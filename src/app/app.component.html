@@ -67,7 +67,7 @@
 
              <slide *ngFor="let slide of slides" id="slide">
 
-               <img [src]="slide.thumbnail" style="margin:auto;">
+               <img [src]="slide.thumbnail" style="margin:auto;" onError="this.src='https://placeholdit.imgix.net/~text?txtsize=33&txt=&w=550&h=535';">
                <div class="carousel-caption">
 
                  <div class="news-category">
@@ -93,7 +93,7 @@
 
         <div id="slide-sider">
 
-          <img [src]="slide.thumbnail" style="margin:auto;">
+          <img [src]="slide.thumbnail" style="margin:auto;" onError="this.src='https://placeholdit.imgix.net/~text?txtsize=33&txt=&w=550&h=535';">
 
           <div class="carousel-caption">
 
