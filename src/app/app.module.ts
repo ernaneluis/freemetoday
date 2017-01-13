@@ -14,6 +14,7 @@ import {ShareButtonsModule} from "ng2-sharebuttons";
 import {Pipe, PipeTransform} from '@angular/core'
 import {DomSanitizer} from '@angular/platform-browser';
 import { VideoCardComponent } from './video-card/video-card.component'
+import {Router,Routes,RouterModule, NavigationEnd} from '@angular/router';
 
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
@@ -22,6 +23,16 @@ export class SafePipe implements PipeTransform {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 }
+
+const appRoutes: Routes = [
+  // { path: 'news',   component: AppComponent },
+  // { path: 'videos', component: AppComponent },
+  // { path: '', component: AppComponent },
+  { path: '',
+    redirectTo: '/',
+    pathMatch: 'full'
+  }
+];
 
 
 @NgModule({
@@ -35,6 +46,7 @@ export class SafePipe implements PipeTransform {
   imports: [
     MaterialModule.forRoot(),
     CarouselModule.forRoot(),
+    RouterModule.forRoot(appRoutes),
     BrowserModule,
     FormsModule,
     HttpModule,

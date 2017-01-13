@@ -4,9 +4,9 @@ import { FeedServiceService } from './feed-service.service';
 import { Feed } from './model/feed';
 import { FeedEntry } from './model/feed-entry';
 import { DataConfig } from './model/data-config';
+import {Router, NavigationEnd} from '@angular/router';
 
-// Add the RxJS Observable operators we need in this app.
-// import './rxjs-operators';
+declare let ga: Function;
 
 
 @Component({
@@ -15,7 +15,10 @@ import { DataConfig } from './model/data-config';
   styleUrls: ['./app.component.css']
 })
 
+
+
 export class AppComponent implements OnInit {
+
   title = 'app works!';
   isDarkTheme: boolean = false;
   lastDialogResult: string;
@@ -45,7 +48,18 @@ export class AppComponent implements OnInit {
   constructor(private _dialog: MdDialog,
               private _snackbar: MdSnackBar,
               private feedService: FeedServiceService,
-              private dataConfig: DataConfig) {
+              private dataConfig: DataConfig,
+              public router: Router) {
+
+
+    this.router.events.subscribe(event => {
+       if (event instanceof NavigationEnd) {
+         ga('set', 'page', event.urlAfterRedirects);
+         ga('send', 'pageview');
+         console.log("google A pageview: " + event.urlAfterRedirects);
+       }
+     });
+
     // Update the value for the progress-bar on an interval.
     // setInterval(() => {
     //   this.progress = (this.progress + Math.floor(Math.random() * 4) + 1) % 100;
