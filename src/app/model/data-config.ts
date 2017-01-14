@@ -10,7 +10,8 @@ export class DataConfig
       {name: "MBL", url: "http://mbl.org.br/"},
       {name: "Ideal Libertario", url: "https://ideallibertario.wordpress.com/"},
       {name: "Foda-se o Estado", url: "http://foda-seoestado.com/"},
-      {name: "Anarco Capitalismo", url: "https://anarcocapitalismo.com.br/"}
+      {name: "Anarco Capitalismo", url: "https://anarcocapitalismo.com.br/"},
+      {name: "Instituto Millenium", url: "http://www.institutomillenium.org.br/"}
     ],
     videos:[
       {chanelName: "ideiasradicais", channelId:"UC-NwgkrLPYmzM-xoLr2GX-Q", playlistId: "UU-NwgkrLPYmzM-xoLr2GX-Q"},
