@@ -72,11 +72,15 @@ export class FeedServiceService
               link: data.items[i].link, //link da noticia
               pubDate: data.items[i].pubDate, //data
               sourceName: data.feed.title,
-              thumbnail: data.items[i].thumbnail,
+              thumbnail: "",
               description:  data.items[i].description
          };
 
-           if(!entry.thumbnail)
+           if(data.items[i].thumbnail)
+           {
+             entry.thumbnail = data.items[i].thumbnail
+           }
+          else
            {
                var div = document.createElement('div');
                div.innerHTML = data.items[i].content;
